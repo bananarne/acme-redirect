@@ -8,7 +8,7 @@ use std::time::Duration;
 const REQUEST_TIMEOUT: Duration = Duration::from_secs(30);
 
 pub fn check(name: &str, config: &Config) -> Result<()> {
-    let mut chall = Challenge::new(&config);
+    let mut chall = Challenge::new(config);
     let token = chall.random()?;
     let url = format!("http://{name}/.well-known/acme-challenge/{token}");
     let r = ureq::get(&url).timeout(REQUEST_TIMEOUT).call()?;
