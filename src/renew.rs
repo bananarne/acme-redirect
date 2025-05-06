@@ -73,7 +73,7 @@ fn renew_cert(
     } else {
         if args.check_first {
             info!("checking before renewal {:?}", cert.name);
-            check::check(&cert.name, &config).with_context(|| {
+            check::check(&cert.name, config).with_context(|| {
                 anyhow!("checking of domain prior to renewal failed {:?}", cert.name)
             })?
         }
